@@ -1,0 +1,19 @@
+SELECT * FROM agents;
+EXPLAIN SELECT * FROM agents;
+EXPLAIN ANALYZE SELECT * FROM agents;
+EXPLAIN ANALYZE SELECT agent_name FROM agents;
+
+EXPLAIN ANALYZE SELECT * FROM orders
+WHERE ord_amount > 2000;
+
+--Creat index on cust_city column
+EXPLAIN ANALYZE SELECT * FROM customer
+WHERE cust_city = 'London' OR cust_city = 'New York';
+
+CREATE INDEX ON customer USING btree(cust_city);
+
+-- Create hash index
+EXPLAIN ANALYZE SELECT * FROM orders
+WHERE ord_amount = 500.00;
+
+CREATE INDEX ON orders USING hash(ord_amount);

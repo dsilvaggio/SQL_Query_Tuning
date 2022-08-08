@@ -1,0 +1,12 @@
+SET enable_nestloop = false;
+SET enable_hashjoin = true;
+SET enable_mergejoin = false;
+
+EXPLAIN ANALYZE SELECT * FROM agents AS ag
+INNER JOIN customer AS cu
+ON ag.agent_code = cu.agent_code;
+
+SELECT COUNT(*) FROM customer;
+SELECT COUNT(*) FROM agents;
+
+CREATE INDEX ON customer(agent_code);

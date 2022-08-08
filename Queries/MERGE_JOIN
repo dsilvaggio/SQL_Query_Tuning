@@ -1,0 +1,11 @@
+SET enable_nestloop = false;
+SET enable_hashjoin = false;
+SET enable_mergejoin = true;
+
+EXPLAIN ANALYZE SELECT * FROM customer AS cu
+INNER JOIN agents AS ag
+ON ag.agent_code = cu.agent_code
+WHERE cu.grade>1;
+
+CREATE INDEX ON agents(agent_code);
+CREATE INDEX ON customer(agent_code);
